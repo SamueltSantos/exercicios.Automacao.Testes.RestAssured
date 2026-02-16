@@ -5,7 +5,7 @@ import org.junit.Test;
 public class TestePrimeiraApi {
 
     @Test
-    public void testeComSucessoPrimeiraApi(){
+    public void Exercicio1_testeComSucessoPrimeiraApi(){
 
         String url = "http://localhost:8080/api/primeiraApi";
 
