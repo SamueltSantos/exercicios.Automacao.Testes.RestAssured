@@ -5,7 +5,7 @@ import org.junit.Test;
 public class TestesExercicios {
 
     @Test
-    public void Exercicio1_testeParOuImpar(){
+    public void Exercicio4_testeParOuImpar(){
 
         String url = "http://localhost:8080/exercicios/parOuImpar";
         int numero = 220;
@@ -22,6 +22,24 @@ public class TestesExercicios {
                 .statusCode(200)
                 //.body(Matchers.containsString(msgResponseBody));
                 .body(Matchers.equalTo(msgResponseBody));
+
+    }
+
+    @Test
+    public void Exercicio5_testePathParamSalario(){
+
+        String pathParamSalario = "2000";
+        String url = "http://localhost:8080/exercicios/calculaSalario/"+pathParamSalario;
+
+        RestAssured.given()
+                .log().all()
+                .when()
+                .get(url)
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(200)
+                .body(Matchers.containsString(pathParamSalario));
 
     }
 }

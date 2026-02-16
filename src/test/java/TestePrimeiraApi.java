@@ -28,10 +28,8 @@ public class TestePrimeiraApi {
 @Test
     public void Exercicio3_testePathParamPrimeiraApiV2(){
 
-
         String textPathParam = "Teste Samuel PathParam";
         String url = "http://localhost:8080/api/primeiraApiV2/"+textPathParam;
-
 
         RestAssured.given()
                 .log().all()
