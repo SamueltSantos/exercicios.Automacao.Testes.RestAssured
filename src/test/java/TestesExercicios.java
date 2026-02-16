@@ -1,0 +1,27 @@
+import io.restassured.RestAssured;
+import org.hamcrest.Matchers;
+import org.junit.Test;
+
+public class TestesExercicios {
+
+    @Test
+    public void Exercicio1_testeParOuImpar(){
+
+        String url = "http://localhost:8080/exercicios/parOuImpar";
+        int numero = 220;
+        String msgResponseBody = "O numero 220 é par";
+
+        RestAssured.given()
+                .queryParam("numero",numero)
+                .log().all()
+                .when()
+                .get(url)
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(200)
+                //.body(Matchers.containsString(msgResponseBody));
+                .body(Matchers.equalTo(msgResponseBody));
+
+    }
+}
