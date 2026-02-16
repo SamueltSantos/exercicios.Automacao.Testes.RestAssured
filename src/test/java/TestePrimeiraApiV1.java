@@ -20,8 +20,6 @@ public class TestePrimeiraApiV1 {
                 .statusCode(200)
                 .body(Matchers.containsString(textQueryParam));
 
-
-
     }
 
 
