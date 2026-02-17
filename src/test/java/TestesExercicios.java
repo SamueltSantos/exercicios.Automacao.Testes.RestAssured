@@ -42,4 +42,24 @@ public class TestesExercicios {
                 .body(Matchers.containsString(pathParamSalario));
 
     }
+
+    @Test
+    public void Exercicio6_testeQueryValidaCPF(){
+
+        String pathParamSalario = "2000";
+        String url = "http://localhost:8080/exercicios/validarCpf";
+        String cpf = "35189156060";
+
+        RestAssured.given()
+                .log().all()
+                .queryParam("cpf",cpf)
+                .when()
+                .get(url)
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(200)
+                .body(Matchers.equalTo("CPF Valido"));
+
+    }
 }
