@@ -1,18 +1,25 @@
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.specification.RequestSpecification;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
 public class TestePrimeiraApi {
 
+    String url = "http://localhost:8080/api";
+
+    RequestSpecification requestSpecification = new RequestSpecBuilder().setBaseUri(url).build();//Montagem para reusar no .spec
+
     @Test
     public void Exercicio1_testeComSucessoPrimeiraApi(){
 
-        String url = "http://localhost:8080/api/primeiraApi";
+        String path = "/primeiraApi";
 
         RestAssured.given()
+                .spec(requestSpecification)
                         .log().all()
                 .when()
-                        .get(url)
+                        .get(path)
                 .then()
                         .log().all()
                         .assertThat()
@@ -29,12 +36,13 @@ public class TestePrimeiraApi {
     public void Exercicio3_testePathParamPrimeiraApiV2(){
 
         String textPathParam = "Teste Samuel PathParam";
-        String url = "http://localhost:8080/api/primeiraApiV2/"+textPathParam;
+        String path = "/primeiraApiV2/"+textPathParam;
 
         RestAssured.given()
+                .spec(requestSpecification)
                 .log().all()
                 .when()
-                .get(url)
+                .get(path)
                 .then()
                 .log().all()
                 .assertThat()

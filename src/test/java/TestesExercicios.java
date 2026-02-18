@@ -1,8 +1,11 @@
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.specification.RequestSpecification;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
 public class TestesExercicios {
+
 
     @Test
     public void Exercicio4_testeParOuImpar(){
@@ -46,7 +49,7 @@ public class TestesExercicios {
     @Test
     public void Exercicio6_testeQueryValidaCPF(){
 
-        String pathParamSalario = "2000";
+
         String url = "http://localhost:8080/exercicios/validarCpf";
         String cpf = "35189156060";
 
