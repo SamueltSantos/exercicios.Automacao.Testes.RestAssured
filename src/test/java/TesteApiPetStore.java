@@ -1,13 +1,16 @@
 import io.restassured.RestAssured;
 import io.restassured.http.Header;
+import io.restassured.response.Response;
 import org.hamcrest.Matchers;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 public class TesteApiPetStore {
 
     @Test
     public void Exercicio7_Utilizando_Post_PetStore(){
-
 
         String url = "https://petstore.swagger.io/v2/user/createWithList";
 
@@ -34,7 +37,19 @@ public class TesteApiPetStore {
                 .then()
                 .log().all()
                 .assertThat()
-                .statusCode(200);
+                .statusCode(200)
+        .statusLine(containsString("200"))
+                .contentType("application/json")
+
+
+                // ===== VALIDAÇÕES DO BODY =====
+                .body("$", notNullValue())
+                .body("code", notNullValue())
+                .body("type", notNullValue())
+                .body("message", notNullValue())
+
+                // ===== GARANTIR QUE NÃO EXISTEM CAMPOS EXTRAS =====
+                .body("size()", equalTo(3));
 
     }
 }
